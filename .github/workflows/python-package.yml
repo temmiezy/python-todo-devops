@@ -9,7 +9,7 @@ on:
 
 env:
   PROJECT_ID: ${{ secrets.GCE_PROJECT }}
-  GCE_INSTANCE: leaning-cloud-demo  # TODO: update to instance name
+  GCE_INSTANCE: movie-instance  # TODO: update to instance name
   GCE_INSTANCE_ZONE: us-central1-a   # TODO: update to instance zone
 
 jobs:
