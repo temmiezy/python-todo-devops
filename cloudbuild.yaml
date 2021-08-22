@@ -1,0 +1,27 @@
+env:
+  PROJECT_ID: ${{ secrets.GCE_PROJECT }}
+  GCE_INSTANCE: movie-instance  # TODO: update to instance name
+  GCE_INSTANCE_ZONE: us-central1-a   # TODO: update to instance zone
+
+steps:
+ # Build the container image
+ - name: 'gcr.io/cloud-builders/docker'
+   args: ['build', '-t', 'gcr.io/parknation-194001/app:$COMMIT_SHA', '.']
+ # Push the container image to Container Registry
+ - name: 'gcr.io/cloud-builders/docker'
+   args: ['push', 'gcr.io/parknation-194001/app:$COMMIT_SHA']
+ # Deploy container image to Cloud Run
+ - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+   entrypoint: gcloud
+   args:
+   - 'run'
+   - 'deploy'
+   - 'app'
+   - '--image'
+   - 'gcr.io/parknation-194001/app:$COMMIT_SHA'
+   - '--region'
+   - 'us-central1'
+   - '--platform'
+   - 'managed'
+images:
+- 'gcr.io/parknation-194001/app:$COMMIT_SHA'
