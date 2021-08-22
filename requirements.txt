@@ -2,3 +2,9 @@ Flask
 SQLAlchemy
 Flask-SQLAlchemy
 pytest
+pylint
+click
+pandas
+numpy
+sklearn
+scipy
