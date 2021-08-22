@@ -55,4 +55,4 @@ def delete(todo_id):
 @app.before_first_request
 def create_tables():
     db.create_all()
-    app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
+    app.run(host='127.0.0.1', port=8080, debug=True)
